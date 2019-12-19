@@ -1,18 +1,23 @@
 package mygroup.crudproj.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
-    //    @Id
-//    @Column(name = "id")
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //    @Column(name = "login")
+    @Column(name = "login")
     private String login;
 
-    //    @Column(name = "password")
+    @Column(name = "password")
     private String password;
 
-    //    @Column(name = "role")
+    @Column(name = "role")
     private String role;
 
     public User() {
@@ -71,7 +76,7 @@ public class User {
         this.role = role;
     }
 
-    public String getRole () {
+    public String getRole() {
         return role;
     }
 
