@@ -19,6 +19,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<User> allUsers() {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("from User").list();
@@ -43,7 +44,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(Long id) {
         Session session = sessionFactory.getCurrentSession();
         return session.get(User.class, id);
     }

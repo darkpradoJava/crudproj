@@ -21,7 +21,7 @@
         <th>role</th>
         <th>action</th>
     </tr>
-    <c:forEach var="user" items="${UsersList}">
+    <c:forEach var="user" items="${usersList}">
         <tr>
             <td>${user.id}</td>
             <td>${user.login}</td>

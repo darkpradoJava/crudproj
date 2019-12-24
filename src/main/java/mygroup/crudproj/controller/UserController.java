@@ -2,7 +2,6 @@ package mygroup.crudproj.controller;
 
 import mygroup.crudproj.model.User;
 import mygroup.crudproj.service.UserService;
-import mygroup.crudproj.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,15 +31,8 @@ public class UserController {
         return modelAndView;
     }
 
-//    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-//    public ModelAndView editPage() {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("editPage");
-//        return modelAndView;
-//    }
-
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public ModelAndView editPage(@PathVariable("id") int id) {
+    public ModelAndView editPage(@PathVariable("id") Long id) {
         User user = userService.getUserById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editPage");
@@ -64,7 +56,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView addFilm(@ModelAttribute("user") User user) {
+    public ModelAndView addUser(@ModelAttribute("user") User user) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         userService.add(user);
@@ -72,7 +64,7 @@ public class UserController {
     }
 
     @RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
-    public ModelAndView deleteFilm(@PathVariable("id") int id) {
+    public ModelAndView deleteUser(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         User user = userService.getUserById(id);
