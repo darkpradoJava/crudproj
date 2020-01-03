@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -33,7 +33,7 @@ public class UserController {
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public ModelAndView editPage(@PathVariable("id") Long id) {
-        User user = userService.getUserById(id);
+        Optional<User> user = userService.getUserById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editPage");
         modelAndView.addObject("user", user);
@@ -67,7 +67,11 @@ public class UserController {
     public ModelAndView deleteUser(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
-        User user = userService.getUserById(id);
+        Optional<User> optionalUser = userService.getUserById(id);
+        User user = null;
+        if(optionalUser.isPresent()) {
+            user = optionalUser.get();
+        }
         userService.delete(user);
         return modelAndView;
     }
